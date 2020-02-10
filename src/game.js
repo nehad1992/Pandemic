@@ -21,6 +21,12 @@ export class City {
   infect(){
     this.diseaseCount ++;
   }
+
+  setDiseaseCount(){
+    setInterval(() => {
+      this.infect();
+    }, 120000);
+  }
 }
 
 var seattle = new City;

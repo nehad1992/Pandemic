@@ -20,7 +20,13 @@ describe("City", () => {
     expect(seattle.diseaseCount).toEqual(1);
   })
   test("should increase Seattle diseaseCount by 1 after two minutes", () => {
+    seattle.setDiseaseCount();
     jest.advanceTimersByTime(120001)
     expect(seattle.diseaseCount).toEqual(1);
+  })
+  test("should increase Seattle diseaseCount by 1 after every two minutes", () => {
+    seattle.setDiseaseCount();
+    jest.advanceTimersByTime(240001)
+    expect(seattle.diseaseCount).toEqual(2);
   })
 })

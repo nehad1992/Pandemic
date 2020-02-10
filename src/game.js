@@ -19,7 +19,7 @@ export class City {
   }
 
   infect(){
-    // disease count ++
+    this.diseaseCount ++;
   }
 }
 

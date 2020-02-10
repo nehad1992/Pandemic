@@ -1,6 +1,7 @@
 | Spec | Example Input | Expected Output |
 | :-------------     | :------------- | :------------- |
 |Creates three cities with 2 disease points on the board | 0 minutes| Seattle: diseaseCount: 0, Paris: diseaseCount: 0, Tokyo: diseaseCount: 2. | 
+| "Infect" a city | Seattle: diseaseCount: 0, Paris: diseaseCount: 0, Tokyo: diseaseCount: 2 - => Infect Paris  | Seattle: diseaseCount: 0, Paris: diseaseCount: 1, Tokyo: diseaseCount: 2 |
 | "Infect" a city after two minutes of time | Seattle: diseaseCount: 0, Paris: diseaseCount: 0, Tokyo: diseaseCount: 2 - => Infect Paris at 2 minute timer | Seattle: diseaseCount: 0, Paris: diseaseCount: 1, Tokyo: diseaseCount: 2 |
 | "Infect" a same city after another two minutes of time |Seattle: diseaseCount: 0, Paris: diseaseCount: 1, Tokyo: diseaseCount: 2 - => Infect Paris at 4 minute timer | Seattle: diseaseCount: 0, Paris: diseaseCount: 2, Tokyo: diseaseCount: 2 |
 | "Infect" nearby cities when the diseaseCount limit is maxed out at 3 | Seattle: diseaseCount: 0, Paris: diseaseCount: 3, Tokyo: diseaseCount: 2 - => Infect Paris | Seattle: diseaseCount: 1, Paris: diseaseCount: 3, Tokyo: diseaseCount: 3 |

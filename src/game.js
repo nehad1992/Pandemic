@@ -1,17 +1,48 @@
+// class Player {
+//   constructor(){
+//     this.moveCount = 0;
+//     this.currentLocation = seattle;
+//   }
+// }
+
+//   increaseMoves(){
+//     this.moveCount ++
+//   }
+
+//   treat(city){
+//    this.moveCount --
+//   //how to target the city 
+
+//   }
+
+//   travel(){
+//     this.moveCount --
+//     // how to target city
+//     // give city a boolean true false if player is present
+//   }
+
 export class Player {
   constructor(){
-    this.moveCount = 0;
-    this.currentLocation = seattle;
+    this.actionPoints = 0;
+    this.currentLocation;
+  }
+    setActionPoints(){
+    this.actionPoints ++
   }
 
-  treat(city){
-    // disease count --
-  }
+  // treat(city){
+  //  this.actionPoints --
+  // //how to target the city 
 
-  travel(){
+  // }
 
-  }
+  // travel(){
+  //   this.actionPoints --
+  //   // how to target city
+  //   // give city a boolean true false if player is present
+  // }
 }
+
 
 class City {
   constructor(){
@@ -21,11 +52,12 @@ class City {
 
 export class Game {
   constructor(){
-    let tokyo = new City;
-    let paris = new City;
-    let seattle = new City;
+    let tokyo = new City();
+    let paris = new City();
+    let seattle = new City();
     this.isGameOver = false;
     this.cities = [tokyo, paris, seattle];
+    this.player = new Player();
   }
 
   getTotalDiseaseCount(){
@@ -56,10 +88,16 @@ export class Game {
     }
   }
 
-  setDiseaseCount(cityIndex){
+  setInfectTimer(cityIndex){
     setInterval(() => {
       this.infect(cityIndex);
       // allCities.infect();
     }, 120000);
+  }
+
+  setMoveTimer(){
+    setInterval(() => {
+      this.player.setActionPoints();
+    }, 60000);
   }
 }

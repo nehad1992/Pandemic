@@ -1,40 +1,24 @@
-// class Player {
-//   constructor(){
-//     this.moveCount = 0;
-//     this.currentLocation = seattle;
-//   }
-// }
 
-//   increaseMoves(){
-//     this.moveCount ++
-//   }
-
-//   treat(city){
-//    this.moveCount --
-//   //how to target the city 
-
-//   }
-
-//   travel(){
-//     this.moveCount --
-//     // how to target city
-//     // give city a boolean true false if player is present
-//   }
 
 export class Player {
   constructor(){
     this.actionPoints = 0;
     this.currentLocation;
   }
-    setActionPoints(){
+  setActionPoints(){
     this.actionPoints ++
   }
 
-  // treat(city){
-  //  this.actionPoints --
-  // //how to target the city 
+  treat(city){
+    if(this.actionPoints=== 0 || city.diseaseCount === 0){
+      return false;
+    }else{
+      this.actionPoints --;
+      city.diseaseCount --;
+    }
+  //how to target the city 
 
-  // }
+  }
 
   // travel(){
   //   this.actionPoints --
@@ -47,6 +31,7 @@ export class Player {
 class City {
   constructor(){
     this.diseaseCount = 0;
+
   }
 }
 
@@ -54,11 +39,15 @@ export class Game {
   constructor(){
     let tokyo = new City();
     let paris = new City();
-    let seattle = new City();
+    let seattle = new City(); 
     this.isGameOver = false;
     this.cities = [tokyo, paris, seattle];
     this.player = new Player();
   }
+  //  To check the city number for subtraction needed for decreasing action pts.
+  // let cityDictionary = {}
+  // cityDictionary.put(cityName, cities.Length-1);
+  // cityDictionary.hasKey("Seattle");
 
   getTotalDiseaseCount(){
     let totalDisease = 0;
@@ -68,8 +57,12 @@ export class Game {
     return totalDisease;
   }
 
+  setPlayerLocation(cityIndex){
+    this.player.currentLocation = cityIndex;
+  }
+
   infect(cityIndex){
-    
+      console.log("before infect/ disease in seattle: ", this.cities[2].diseaseCount);
     let totalDisease = this.getTotalDiseaseCount();
 
     if (totalDisease >= (3 * this.cities.length)){
@@ -86,18 +79,18 @@ export class Game {
     } else{
       this.cities[cityIndex].diseaseCount ++;
     }
+    console.log("after infect/ disease in seattle: ", this.cities[2].diseaseCount);
   }
 
   setInfectTimer(cityIndex){
     setInterval(() => {
       this.infect(cityIndex);
-      // allCities.infect();
-    }, 120000);
+    }, 12000);
   }
 
   setMoveTimer(){
     setInterval(() => {
       this.player.setActionPoints();
-    }, 60000);
+    }, 6000);
   }
 }

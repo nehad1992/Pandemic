@@ -71,10 +71,24 @@ describe("City", () => {
     game.player.setActionPoints();
   expect(game.player.actionPoints).toEqual(1)
   })
-  test("should increase Players action points by 2 after two minutes", () => {
+  test("after two minutes should increase Players action points by 2", () => {
     game.setMoveTimer();
     jest.advanceTimersByTime(120001)
     expect(game.player.actionPoints).toEqual(2);
   })
-
+  test("when player treats a city, players action points and cities disease points should decrease by one", () => {
+    game.setMoveTimer();
+    game.setInfectTimer(2);
+    jest.advanceTimersByTime(120001);
+    game.player.treat(seattle);
+    expect(game.player.actionPoints).toEqual(1)
+    expect(seattle.diseaseCount).toEqual(0)
+  })
+  test("if player has 0 action points or the disease points of a city are zero and the user calls a treat function, action points and cities disease points are not changed", () =>{
+    game.setInfectTimer(2);
+    jest.advanceTimersByTime(240001);
+    game.player.treat(seattle);
+    expect(game.player.actionPoints).toEqual(0)
+    expect(seattle.diseaseCount).toEqual(2)
+  })
 })
